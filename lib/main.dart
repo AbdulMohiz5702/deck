@@ -6,15 +6,16 @@ void main() {
   ));
 }
 class MyApp extends StatefulWidget {
-
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
 class _MyAppState extends State<MyApp> {
-   double ? top ;
-   double ? right ;
-   double ? turn ;
+   List deck1 = [20, 60, 0];
+   List deck1Move = [100, 100, 0.05];
+
+   List deck2 = [20, 120, 0];
+   List deck2Move = [100, 100, 0.05];
+   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,24 +28,32 @@ class _MyAppState extends State<MyApp> {
           ),
           child: Stack(
             children: [
-              Deck(right:right = 40 , top:top =40, turn: turn = 0, position: (){
+              Deck(
+                right:deck1[0],
+                top:deck1[1],
+                turn: deck1[2],
+                position: (){
                 setState((){
-                  top = 100;
-                  right = 100 ;
+                  deck1[0] = deck1Move[0];
+                  deck1[1] = deck1Move[1] ;
                 });
               }, move:(){
                 setState((){
-                  turn = 0.05 ;
+                  deck1[2] = deck1Move[2] ;
                 });
               },),
-              Deck(right:right = 70, top:top =70, turn: turn = 0,position: (){
+              Deck(
+                right:deck2[0],
+                top:deck2[1],
+                turn: deck2[2],
+                position: (){
+                  setState((){
+                    deck2[0] = deck2Move[0];
+                    deck2[1] = deck2Move[1] ;
+                  });
+                }, move:(){
                 setState((){
-                  top = 150;
-                  right = 150 ;
-                });
-              },move: (){
-                setState((){
-                  turn = 0.05 ;
+                  deck2[2] = deck2Move[2] ;
                 });
               },),
             ],
